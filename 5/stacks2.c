@@ -70,7 +70,7 @@ int main(int argc, char **argv) {
     
     for (i = 0; i < MAX_STACKS; i++) st[i] = NULL;
     
-    while(fgets(s, MAX_LINE, stdin) > 0) {
+    while (fgets(s, MAX_LINE, stdin) != NULL) {
     
         if (s[0] == '[') {
             a = strlen(s) - 1;

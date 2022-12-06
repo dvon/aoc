@@ -6,7 +6,7 @@ int main(int argc, char **argv) {
     char s[MAX_LINE];
     int p = 0;
 
-    while (fgets(s, MAX_LINE, stdin) > 0) {
+    while (fgets(s, MAX_LINE, stdin) != NULL) {
     
         if ((s[0] == 'A' && s[2] == 'X') ||
             (s[0] == 'B' && s[2] == 'Y') ||

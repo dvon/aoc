@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
     
 outer_loop:
     
-    while (fgets(s, MAX_LINE, stdin) > 0) {
+    while (fgets(s, MAX_LINE, stdin) != NULL) {
         sl = strlen(s) - 1;
         fgets(t, MAX_LINE, stdin);
         tl = strlen(t) - 1;

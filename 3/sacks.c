@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
 
 outer_loop:
     
-    while (fgets(s, MAX_LINE, stdin) > 0) {
+    while (fgets(s, MAX_LINE, stdin) != NULL) {
         n = strlen(s) - 1;
         
         for (i = 0; i < n / 2; i++) {
