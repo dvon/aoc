@@ -80,7 +80,7 @@ int size_search(dir_t *dir) {
         size = dir->size;
     } else {
         for (lp = dir->subs; lp != NULL; lp = lp->next) {
-            size += total_size(lp->dir);
+            size += size_search(lp->dir);
         }
     }
 
