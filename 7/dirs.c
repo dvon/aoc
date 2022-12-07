@@ -47,7 +47,7 @@ void add_sub(dir_t *dir, int size, char *name) {
 dir_t *cd(dir_t *from, char *to) {
     dlst_t * lp;
 
-    if (from == NULL || strcmp(to, "/") == 0) {
+    if (strcmp(to, "/") == 0) {
         if (from == NULL) root = new_dir(NULL, 0, "/");
         return root;
 
