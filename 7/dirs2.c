@@ -1,3 +1,4 @@
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -69,9 +70,9 @@ dir_t *cd(dir_t *from, char *to) {
     return NULL;
 }
 
-int answer = 0;
+int del_size = INT_MAX;
 
-int size_search(dir_t *dir) {
+int size_search(dir_t *dir, int del_min) {
     dlst_t *lp;
     int size = 0;
 
@@ -79,12 +80,12 @@ int size_search(dir_t *dir) {
         size = dir->size;
     } else {
         for (lp = dir->subs; lp != NULL; lp = lp->next) {
-            size += size_search(lp->dir);
+            size += size_search(lp->dir, del_min);
         }
     }
-
-    if (dir->size == 0 && size <= 100000) {
-        answer += size;
+    
+    if (del_min > 0 && size >= del_min) {
+        if (size < del_size) del_size = size;
     }
 
     return size;
@@ -92,7 +93,7 @@ int size_search(dir_t *dir) {
 
 int main(int argc, char **argv) {
     char s[MAX_LINE], t[MAX_LINE];
-    int i;
+    int i, m;
     dir_t *d = NULL;
 
     while (fgets(s, MAX_LINE, stdin) != NULL) {
@@ -111,8 +112,9 @@ int main(int argc, char **argv) {
         }
     }
 
-    size_search(root);
-    printf("%d\n", answer);
+    m = 30000000 - (70000000 - size_search(root, 0));
+    size_search(root, m);
+    printf("%d\n", del_size);
 
     return 0;
 }
