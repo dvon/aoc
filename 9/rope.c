@@ -41,46 +41,54 @@ int main(int argc, char **argv) {
         sscanf(s, "%c %d\n", &c, &n);
         
         for (; n > 0; n--) {
-        
             if (c == 'R') {
                 hx++;
-                
-                if (hx == tx + 2) {
-                    if (hy == ty + 1) ty++;
-                    else if (hy == ty - 1) ty--;
-                    tx++;
-                }
-                
             } else if (c == 'L') {
                 hx--;
-                
-                if (hx == tx - 2) {
-                    if (hy == ty + 1) ty++;
-                    else if (hy == ty - 1) ty--;
-                    tx--;
-                }
-            
             } else if (c == 'U') {
                 hy++;
-                
-                if (hy == ty + 2) {
-                    if (hx == tx + 1) tx++;
-                    else if (hx == tx - 1) tx--;
-                    ty++;
-                }
-            
             } else if (c == 'D') {
                 hy--;
-                
-                if (hy == ty - 2) {
-                    if (hx == tx + 1) tx++;
-                    else if (hx == tx - 1) tx--;
-                    ty--;
-                }
             }
+                
+            if (hx == tx) {
+                if (hy == ty + 2) ty++;
+                else if (hy == ty - 2) ty--;
             
-            // printf("H: %d,%d  T: %d,%d\n", hx, hy, tx, ty);
+            } else if (hy == ty) {
+                if (hx == tx + 2) tx++;
+                else if (hx == tx - 2) tx--;
             
+            } else if (
+                (hx == tx + 1 && hy == ty + 2) ||
+                (hx == tx + 2 && hy == ty + 2) ||
+                (hx == tx + 2 && hy == ty + 1)) {
+                tx++;
+                ty++;
+
+            } else if (
+                (hx == tx - 1 && hy == ty + 2) ||
+                (hx == tx - 2 && hy == ty + 2) ||
+                (hx == tx - 2 && hy == ty + 1)) {
+                tx--;
+                ty++;
+            
+            } else if (
+                (hx == tx + 1 && hy == ty - 2) ||
+                (hx == tx + 2 && hy == ty - 2) ||
+                (hx == tx + 2 && hy == ty - 1)) {
+                tx++;
+                ty--;
+            
+            } else if (
+                (hx == tx - 1 && hy == ty - 2) ||
+                (hx == tx - 2 && hy == ty - 2) ||
+                (hx == tx - 2 && hy == ty - 1)) {
+                tx--;
+                ty--;
+            }
+    
+            // printf("H: %d,%d  T: %d,%d\n", hx, hy, tx, ty);        
             k += add_loc(&loc, tx, ty);
         }
     }

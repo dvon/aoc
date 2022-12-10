@@ -59,28 +59,45 @@ int main(int argc, char **argv) {
             
             for (i = 1; i < 10; i++) {
             
-                if (x[i - 1] == x[i] + 2) {
-                    if (y[i - 1] == y[i] + 1) y[i]++;
-                    else if (y[i - 1] == y[i] - 1) y[i]--;
+                if (x[i - 1] == x[i]) {
+                    if (y[i - 1] == y[i] + 2) y[i]++;
+                    else if (y[i - 1] == y[i] - 2) y[i]--;
+                
+                } else if (y[i - 1] == y[i]) {
+                    if (x[i - 1] == x[i] + 2) x[i]++;
+                    else if (x[i - 1] == x[i] - 2) x[i]--;
+                
+                } else if (
+                    (x[i - 1] == x[i] + 1 && y[i - 1] == y[i] + 2) ||
+                    (x[i - 1] == x[i] + 2 && y[i - 1] == y[i] + 2) ||
+                    (x[i - 1] == x[i] + 2 && y[i - 1] == y[i] + 1)) {
                     x[i]++;
-                
-                } else if (x[i - 1] == x[i] - 2) {
-                    if (y[i - 1] == y[i] + 1) y[i]++;
-                    else if (y[i - 1] == y[i] - 1) y[i]--;
+                    y[i]++;
+
+                } else if (
+                    (x[i - 1] == x[i] - 1 && y[i - 1] == y[i] + 2) ||
+                    (x[i - 1] == x[i] - 2 && y[i - 1] == y[i] + 2) ||
+                    (x[i - 1] == x[i] - 2 && y[i - 1] == y[i] + 1)) {
                     x[i]--;
-                
-                } else if (y[i - 1] == y[i] + 2) {
-                    if (x[i - 1] == x[i] + 1) x[i]++;
-                    else if (x[i - 1] == x[i] - 1) x[i]--;
                     y[i]++;
                 
-                } else if (y[i - 1] == y[i] - 2) {
-                    if (x[i - 1] == x[i] + 1) x[i]++;
-                    else if (x[i - 1] == x[i] - 1) x[i]--;
+                } else if (
+                    (x[i - 1] == x[i] + 1 && y[i - 1] == y[i] - 2) ||
+                    (x[i - 1] == x[i] + 2 && y[i - 1] == y[i] - 2) ||
+                    (x[i - 1] == x[i] + 2 && y[i - 1] == y[i] - 1)) {
+                    x[i]++;
+                    y[i]--;
+                
+                } else if (
+                    (x[i - 1] == x[i] - 1 && y[i - 1] == y[i] - 2) ||
+                    (x[i - 1] == x[i] - 2 && y[i - 1] == y[i] - 2) ||
+                    (x[i - 1] == x[i] - 2 && y[i - 1] == y[i] - 1)) {
+                    x[i]--;
                     y[i]--;
                 }
             }
-
+            
+            // printf("%d,%d\n", x[9], y[9]);
             k += add_loc(&loc, x[9], y[9]);
         }
     }
