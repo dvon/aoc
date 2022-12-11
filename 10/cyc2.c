@@ -2,17 +2,17 @@
 
 #define MAX_LINE 64
 
-void cycle(int &c, int x) {
+void cycle(int *c, int x) {
 
-    if (x - 1 <= c && c <= x + 1) {
+    if (x - 1 <= *c && *c <= x + 1) {
         printf("#");
     } else {
         printf(".");
     }
     
-    if (++c == 40) {
+    if (++(*c) == 40) {
         printf("\n");
-        c = 0;
+        *c = 0;
     }
 }
 
